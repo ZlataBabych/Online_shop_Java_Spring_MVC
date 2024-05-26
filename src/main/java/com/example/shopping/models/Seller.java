@@ -1,11 +1,12 @@
-package shoping.models;
+package com.example.shopping.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
+/**
+ * The Seller class is a JPA entity class for sellers.
+ */
 @Entity
+@Table(name = "sellers")
 public class Seller {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,10 +15,21 @@ public class Seller {
     private String name;
     private String location;
 
-    public Seller(Long id, String name, String location) {
+    @Column(name = "card_number")
+    private String cardNumber;
+
+    /**
+     * This constructor is used to create a seller.
+     * @param id the seller ID
+     * @param name the seller name
+     * @param location the seller location
+     * @param cardNumber the seller card number
+     */
+    public Seller(Long id, String name, String location, String cardNumber) {
         this.id = id;
         this.name = name;
         this.location = location;
+        this.cardNumber = cardNumber;
     }
 
     public Seller() {
@@ -46,5 +58,13 @@ public class Seller {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 }
